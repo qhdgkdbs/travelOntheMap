@@ -1,0 +1,69 @@
+body {
+  padding: 0px !important;
+  margin : 0px !important;
+}
+
+#navbar{
+  height:80px;
+  width :80px;
+  background: #262626;
+  color : wheat;
+  font-weight: bolder;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10001;
+  top: 20px;
+  left: 20px;
+  text-align: center;
+}
+
+#infoBox{
+  height:80px;
+  width :80px;
+  position: absolute;
+  top: 100px;
+  z-index: 10000;
+  background-color: thistle;
+  left: 20px;
+  text-align: center;
+  font-size: 12px;
+
+}
+
+#infoTitle{
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+/* .marker {
+  border : 1px solid black;
+  background: green;
+  opacity: 0.8;
+  width : 24px;
+  height : 24px;
+  border-radius: 50%;
+} */
+
+.infowindow_wraps{
+  background: white;
+  padding : 5px;
+  border : 1px solid rgba(0,0,0,0.2)
+}
+
+.infowindow_title{
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.infowindow_content{
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.infowindow_date{
+  font-size: 13px;
+  font-weight: normal;
+}
