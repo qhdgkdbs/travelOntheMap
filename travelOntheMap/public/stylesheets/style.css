@@ -48,22 +48,47 @@ body {
 } */
 
 .infowindow_wraps{
-  background: white;
-  padding : 5px;
-  border : 1px solid rgba(0,0,0,0.2)
+  background: whitesmoke;
+  /* border : 1px solid rgba(0,0,0,0.2); */
+  border-radius: 20px;
+  /* height : 200px; */
+  width: 200px;
+}
+
+.infowindow_text{
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .infowindow_title{
+  padding-top : 3px;
+  padding-bottom : 3px;
   font-size: 15px;
+  color: #006D9B;
+  text-align: center;
   font-weight: bolder;
 }
 
 .infowindow_content{
+  padding-top : 3px;
+  padding-bottom : 5px;
   font-size: 13px;
   font-weight: normal;
+  border-bottom: 0.2px solid gray;
+  text-align: center;
+
 }
 
-.infowindow_date{
+.infowindow_more{
+  padding-top : 3px;
+  padding-bottom : 3px;
   font-size: 13px;
   font-weight: normal;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.infowindow_more_icon{
+  padding-top : 3px;
+  padding-bottom : 3px;
 }

@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>여행을 가고 싶어서 만드는 중</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <link rel = "stylesheet" href="/stylesheets/style.css">
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9mlra4rwwq"></script>
+    <script type="text/javascript" src="/src/MarkerClustering.js"></script>
 </head>
 <body>
   <div id="navbar">지도위에<br>여미치</div>
@@ -41,12 +43,21 @@
         anchor : new naver.maps.Point(16,20) // 중심 좌표를 변경해주는 것
       }
     })
+    
 
     var content = `<div class='infowindow_wraps'>
-        <div class="infoImg"><img src="${target.img}" width=150 hdight=150></div>
-        <div class='infowindow_title'>${target.title}</div>
-        <div class='infowindow_content'>${target.content}</div>
-        <div class='infowindow_date'>${target.date}</div>
+        <div class="infoImg"><img src="${target.img}" width=200 hdight=200></div>
+        <div class="infowindow_text">
+          <div class='infowindow_title'>${target.title}</div>
+          <div class='infowindow_content'>👉 ${target.content}</div>
+          <div class='infowindow_more'>
+            <a href="${target.more}" title="인스타그램에서 더 확인하기">
+              <div class='infowindow_more_icon'>
+                <img src="/images/more_icon.png" width=32 hdight=32>
+              </div>
+            </a>
+            </div>
+        </div>
       </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
       
 
@@ -94,6 +105,8 @@
   //     content : "<div class='marker'></div>"
   //   }
   // })
+
+
   </script>
 </body>
 </html>
