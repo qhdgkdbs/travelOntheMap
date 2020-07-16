@@ -1,7 +1,6 @@
 var data = [
     {
         title : "남산타워",
-        city:"서울",
         content : "여기는 서울 남산타워입니다. ytn의 건물이기도 하죠",
         more : "https://www.google.co.kr/",
         img : "https://i.postimg.cc/7hbZdqXX/image.jpg",
