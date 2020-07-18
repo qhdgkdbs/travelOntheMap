@@ -20,17 +20,6 @@
   <script type="text/javascript" src="/data/data.js"></script>
   <script>
 
-    $.ajax({
-    url:"http://localhost:3000/liquors/",
-    type:"GET",
-    success: function(result) {
-        if (result) {
-            alert("ss");
-        } else {
-            alert("불러오기 실패");
-        }
-    }
-});
   var mapOptions = {
       center: new naver.maps.LatLng(37.531471, 126.979514),
       zoom: 10
