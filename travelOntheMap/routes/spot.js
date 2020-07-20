@@ -9,8 +9,12 @@ mongoose.connect(config.mongoURL , {
 }).then(() => console.log("MONGO_DB connected"))
 .catch(err => console.log(err))
 
-// router.get('/', (req, res) => res.send('Hello World!dd'));
-
+router.get('/', (req, res) => {
+    Spot.find( (err, spots) =>{
+        if(err) return res.status(500).send({err : 'databaseErr'});
+        res.json(Object.values(spots))
+      })
+});
 
 router.post('/', (req, res) => {
     //회원 가입 할때 필요한 정보들을 클라이언트에서 가져오면

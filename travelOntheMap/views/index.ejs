@@ -16,8 +16,12 @@
     <div id="infoTitle">사용방법</div>
     <div id="infoContent">모든 정보는</div>
   </div>
+  <div id="loading">
+    <!-- <img id="loading-image" src="https://i.postimg.cc/7hbZdqXX/image.jpg" alt="데이터 로딩 중입니다" /> -->
+    데이터 로딩 중입니다! 잠시만 기다려주세요
+  </div>
   <div id="map" style="width:100%;height:100vh;"></div>
-  <script type="text/javascript" src="/data/data.js"></script>
+  <!-- <script type="text/javascript" src="/data/data.js"></script> -->
   <script>
 
   var mapOptions = {
@@ -29,52 +33,73 @@
   
   var markerList = [];
   var infowindowList = [];
+  var dataList;
 
-  for(var i in data){
-    var target = data[i]
-    var latlng = new naver.maps.LatLng(target.lat, target.lng) //위도 경도
-    marker = new naver.maps.Marker({
-      map : map,
-      position : latlng,
-      icon : {
-        // content : "<div class='marker'></div>",
-        url:'/images/icon.png',
-        size: new naver.maps.Size(40, 40),
-        origin: new naver.maps.Point(0, 0),
-        anchor : new naver.maps.Point(16,20) // 중심 좌표를 변경해주는 것
-      }
-    })
-    
+  $.ajax({
+    url : "http://172.20.10.3:3000/register", // test.jsp 에서 받아옴
+    dataType :"json", // 데이터타입을 json 으로 받아옴
+    success : function(data) {
+        // alert("data로딩이 완료되었습니다.")
+        console.log("전>>>",data[0].lat)
+        dataList = data;
+        setContent();
+    },
+    error : function(e) {
+        console.log(e.responseText);
+        alert(e)
+    }
+  })
 
-    var content = `<div class='infowindow_wraps'>
-        <div class="infoImg"><img src="${target.img}" width=200 hdight=200></div>
-        <div class="infowindow_text">
-          <div class='infowindow_title'>${target.title}</div>
-          <div class='infowindow_content'>👉 ${target.content}</div>
-          <div class='infowindow_more'>
-            <a href="${target.more}" title="인스타그램에서 더 확인하기" target="_blank">
-              <div class='infowindow_more_icon'>
-                <img src="/images/more_icon.png" width=32 hdight=32>
-              </div>
-            </a>
-            </div>
-        </div>
-      </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
+  $(window).load(function() {    
+      $('#loading').hide();  
+  });
+
+  var setContent = function() {
+    for(var target of dataList){
+      console.log(typeof(target))
+      // var target = dataList[i]
+      var latlng = new naver.maps.LatLng(target.lat, target.lng) //위도 경도
+      marker = new naver.maps.Marker({
+        map : map,
+        position : latlng,
+        icon : {
+          // content : "<div class='marker'></div>",
+          url:'/images/icon.png',
+          size: new naver.maps.Size(40, 40),
+          origin: new naver.maps.Point(0, 0),
+          anchor : new naver.maps.Point(16,20) // 중심 좌표를 변경해주는 것
+        }
+      })
       
 
-    var infowindow = new naver.maps.InfoWindow({
-      content : content,
-      backgroundColor : "#00ff0000",
-      borderColor : "#00ff0000",
-      anchorSize : new naver.maps.Size(12,12)
-    })
+      var content = `<div class='infowindow_wraps'>
+          <div class="infoImg"><img src="${target.picLink}" width=200 hdight=200></div>
+          <div class="infowindow_text">
+            <div class='infowindow_title'>${target.spot}</div>
+            <div class='infowindow_content'>👉 ${target.des}</div>
+            <div class='infowindow_more'>
+              <a href="${target.moreLink}" title="인스타그램에서 더 확인하기" target="_blank">
+                <div class='infowindow_more_icon'>
+                  <img src="/images/more_icon.png" width=32 hdight=32>
+                </div>
+              </a>
+              </div>
+          </div>
+        </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
+        
 
-    markerList.push(marker);
-    infowindowList.push(infowindow);
-  }
+      var infowindow = new naver.maps.InfoWindow({
+        content : content,
+        backgroundColor : "#00ff0000",
+        borderColor : "#00ff0000",
+        anchorSize : new naver.maps.Size(12,12)
+      })
 
+      markerList.push(marker);
+      infowindowList.push(infowindow);
+    }
 
-  for(var i = 0,ii = markerList.length; i < ii; i++){
+    for(var i = 0,ii = markerList.length; i < ii; i++){
     naver.maps.Event.addListener(map, "click", clickMap(i));
     naver.maps.Event.addListener(markerList[i], "click", getClickHandler(i));
   }
@@ -132,8 +157,9 @@
             $(clusterMarker.getElement()).find('div:first-child').text(count);
         }
     });
+  }
 
-    
+ 
   function clickMap(i) {
     return function(){
       var infowindow = infowindowList[i]
@@ -154,13 +180,13 @@
   }
 
 
-  // maker = new naver.maps.Marker({
-  //   map : map,
-  //   position : new naver.maps.LatLng(37.3595704, 127.105399),
-  //   icon : {
-  //     content : "<div class='marker'></div>"
-  //   }
-  // })
+  maker = new naver.maps.Marker({
+    map : map,
+    position : new naver.maps.LatLng(37.3595704, 127.105399),
+    icon : {
+      content : "<div class='marker'></div>"
+    }
+  })
 
 
   </script>

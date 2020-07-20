@@ -22,8 +22,13 @@ const spotSchema = mongoose.Schema({
     lng : {
         type : Number,
     },
-    updatedAt : {
-        type : Number
+    createdAt: {
+        type: Date, 
+        default: Date.now
+    },  
+    updatedAt: {
+        type: Date, 
+        default: Date.now
     }
 })
 
