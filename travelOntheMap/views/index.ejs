@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>여행을 가고 싶어서 만드는 중</title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
     <link rel = "stylesheet" href="/stylesheets/style.css">
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9mlra4rwwq"></script>
     <script type="text/javascript" src="/src/MarkerClustering.js"></script>
@@ -43,8 +45,8 @@
 
 
   $.ajax({
-    url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
-    // url : "http://localhost:3000/register",
+    // url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
+    url : "http://localhost:3000/register",
     dataType :"json", // 데이터타입을 json 으로 받아옴
     success : function(data) {
         // alert("data로딩이 완료되었습니다.")
@@ -76,27 +78,47 @@
       })
       
 
-      var content = `<div class='infowindow_wraps'>
-          <div class="infoImg"><img src="${target.picLink}" width=200 hdight=200></div>
-          <div class="infowindow_text">
-            <div class='infowindow_title'>${target.spot}</div>
-            <div class='infowindow_content'>👉 ${target.des}</div>
-            <div class='infowindow_more'>
-              <a href="${target.moreLink}" title="인스타그램에서 더 확인하기" target="_blank">
-                <div class='infowindow_more_icon'>
-                  <img src="/images/more_icon.png" width=32 hdight=32>
-                </div>
-              </a>
-              </div>
-          </div>
-        </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
+      // var content = `<div class='infowindow_wraps'>
+      //     <div class="infoImg"><img src="${target.picLink}" width=200 hdight=200></div>
+      //     <div class="infowindow_text">
+      //       <div class='infowindow_title'>${target.spot}</div>
+      //       <div class='infowindow_content'>👉 ${target.des}</div>
+      //       <div class='infowindow_more'>
+      //         <a href="${target.moreLink}" title="인스타그램에서 더 확인하기" target="_blank">
+      //           <div class='infowindow_more_icon'>
+      //             <img src="/images/more_icon.png" width=32 hdight=32>
+      //           </div>
+      //         </a>
+      //         </div>
+      //     </div>
+      //   </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
+
+// ---------------
+var content =`
+<div style = "background-image:url(${target.picLink}); background-repeat: no-repeat; background-size: 200px 250px;background-position: center center;border-radius: 10px;">
+<a href="${target.moreLink}">
+    <figure>
+        <div class="date"><span class="card-date-day">랜섬</span><span class="card-date-month">여행</span></div>
+        <figcaption>
+            <h4> <span>${target.spot}</span></h4>
+            <p>${target.des}</p>
+        </figcaption>
+    </figure>
+</a>
+</div>
+`
+      
+  
+        
+        // --------------------
+
         
 
       var infowindow = new naver.maps.InfoWindow({
         content : content,
         backgroundColor : "#00ff0000",
         borderColor : "#00ff0000",
-        anchorSize : new naver.maps.Size(12,12)
+        anchorSize : new naver.maps.Size(0,0)
       })
 
       markerList.push(marker);
