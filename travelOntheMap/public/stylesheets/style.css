@@ -23,20 +23,20 @@ body {
 #infoBox{
   height:80px;
   width :80px;
+  background: thistle;
+  color : #262626;
+  font-weight: bolder;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  z-index: 10001;
   top: 100px;
-  z-index: 10000;
-  background-color: thistle;
   left: 20px;
   text-align: center;
-  font-size: 12px;
-
 }
 
-#infoTitle{
-  font-size: 15px;
-  font-weight: bolder;
-}
 
 /* .marker {
   border : 1px solid black;
@@ -108,23 +108,20 @@ body {
    
  #loading-image {  
   position: absolute;  
-  top: 50%;  
-  left: 50%; 
+  top: 40%;  
+  left: 45%; 
   z-index: 100; 
 }
 
 #current{
   position : absolute;
-  top : 180px;
+  /* top : 180px; */
+  bottom : 20px;
   z-index: 1000;
-  background-color: white;
   left: 20px;
   padding: 15px;
-  border : 1px solid rgb(0,0,0,0.2);
-  border-radius: 4px;
   text-align: center;
   cursor : pointer;
-  font-weight: bolder;
 }
 
 .pulse{
