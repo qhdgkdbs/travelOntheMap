@@ -112,4 +112,58 @@ body {
   left: 50%; 
   z-index: 100; 
 }
+
+#current{
+  position : absolute;
+  top : 180px;
+  z-index: 1000;
+  background-color: white;
+  left: 20px;
+  padding: 15px;
+  border : 1px solid rgb(0,0,0,0.2);
+  border-radius: 4px;
+  text-align: center;
+  cursor : pointer;
+  font-weight: bolder;
+}
+
+.pulse{
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgb(255,0,0);
+  animation: pulse 0.7s infinite;
+
+}
  
+@keyframes pulse{
+  0%{
+    box-shadow: 0 0 0 0 rgb(204,49,44,0.4);
+    -moz-box-shadow: 0 0 0 0 rgb(204,49,44,0.4);
+  }
+  70%{
+    box-shadow: 0 0 0 20px rgb(204,49,44,0);
+    -moz-box-shadow: 0 0 0 20px rgb(204,49,44,0);
+  }
+  100%{
+    box-shadow: 0 0 0 0 rgb(204,49,44,0);
+    -moz-box-shadow: 0 0 0 0 rgb(204,49,44,0);
+  }
+}
+
+@-webkit-keyframes pulse{
+  0%{
+    box-shadow: 0 0 0 0 rgb(204,49,44,0.4);
+    -moz-box-shadow: 0 0 0 0 rgb(204,49,44,0.4);
+  }
+  70%{
+    box-shadow: 0 0 0 20px rgb(204,49,44,0);
+    -moz-box-shadow: 0 0 0 20px rgb(204,49,44,0);
+  }
+  100%{
+    box-shadow: 0 0 0 0 rgb(204,49,44,0);
+    -moz-box-shadow: 0 0 0 0 rgb(204,49,44,0);
+  }
+}

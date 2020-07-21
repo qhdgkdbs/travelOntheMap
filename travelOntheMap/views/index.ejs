@@ -9,13 +9,17 @@
     <link rel = "stylesheet" href="/stylesheets/style.css">
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9mlra4rwwq"></script>
     <script type="text/javascript" src="/src/MarkerClustering.js"></script>
+
 </head>
 <body>
-  <div id="navbar">지도위에<br>여미치</div>
+  <div id="navbar">랜섬<br>여행</div>
   <div id="infoBox">
-    <div id="infoTitle">사용방법</div>
+    <div id="infoTitle"></div>
     <div id="infoContent">모든 정보는</div>
   </div>
+
+  <div id="current">현재 위치</div>
+
   <div id="loading">
     <!-- <img id="loading-image" src="https://i.postimg.cc/7hbZdqXX/image.jpg" alt="데이터 로딩 중입니다" /> -->
     데이터 로딩 중입니다! 잠시만 기다려주세요
@@ -36,7 +40,8 @@
   var dataList;
 
   $.ajax({
-    url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
+    // url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
+    url : "http://localhost:3000/register",
     dataType :"json", // 데이터타입을 json 으로 받아옴
     success : function(data) {
         // alert("data로딩이 완료되었습니다.")
@@ -185,6 +190,34 @@
     position : new naver.maps.LatLng(37.3595704, 127.105399),
     icon : {
       content : "<div class='marker'></div>"
+    }
+  })
+
+  let currentUse = true;
+
+  $('#current').click(() => {
+    if("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position){
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const latlng = new naver.maps.LatLng(lat, lng);
+        if(currentUse){
+          maker = new naver.maps.Marker({
+          map : map,
+          position :latlng,
+          icon : {
+            content : `<img class="pulse" draggable="false" unselectable="on" src="https://myfirstmap.s3.ap-northeast-2.amazonaws.com/circle.png">`,
+            anchor : new naver.maps.Point(11,11)
+          }
+          })
+          currentUse = false;
+        }
+        map.setZoom(14, true);
+        map.panTo(latlng);
+
+      })
+    }else{
+      alert("현재위치를 사용할 수 없습니다.")
     }
   })
 
