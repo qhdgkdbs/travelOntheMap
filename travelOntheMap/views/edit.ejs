@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>여행을 가고 싶어서 만드는 중</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div id='spotData'>
+  <script>
+    var dataList;
+    $.ajax({
+      // url : "https://itjusttravel.herokuapp.com/file/register", // test.jsp 에서 받아옴
+      url : "http://localhost:3000/file/allFile",
+      dataType :"json", // 데이터타입을 json 으로 받아옴
+      success : function(data) {
+          dataList = data;
+          setContent();  
+      },
+      error : function(e) {
+          console.log(e.responseText);
+          console.log(e);
+      }
+    })
+
+    var setContent = function() {
+      
+      for(var target of dataList){
+        // console.log(target)
+        var content =`
+          <div class = "spot">이름 : ${target.spot}</div>
+          <div class = "des">설명 : ${target.des}</div>
+          <div class = "moreLink">링크 : ${target.moreLink}</div>
+          <div class = "picLink">사진 : ${target.picLink}</div>
+          <div class = "lat">위도 : ${target.lat}</div>
+          <div class = "lng">경도 : ${target.lng}</div>
+
+          <div class = "button">
+            <div class = "update" style = "float: left;">
+              <form action=''>
+                    <input type='button' 
+                      value='수정' 
+                      onclick='alert("안녕하세요")'/>
+              </form>
+            </div>
+
+            <div class = "delete" style = "float: left;">
+              <form action="http://localhost:3000/file/delete/${target._id}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                <input type='submit' value ="삭제"/>
+              </form>
+            </div>
+          </div>
+          <br>
+          <hr>
+        `
+        $("#spotData").append(content)
+      }
+    }
+  </script>
+
+  
+</body>
