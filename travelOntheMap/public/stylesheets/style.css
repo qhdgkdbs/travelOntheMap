@@ -167,125 +167,123 @@ body {
 
 
 /* ---- */
-*, *:before, *:after {
+* {
   box-sizing: border-box;
-  outline: none;
 }
-html {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 16px;
-  font-smooth: auto;
-  font-weight: 300;
-  line-height: 1.5;
-  color: #444;
-}
-body {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+body, html {
   width: 100%;
-  height: 100vh;
-  background-color: #34495e;
-}
-a {
-  text-decoration: none;
-}
-figure {
-  position: relative;
+  height: 100%;
+  display: -webkit-box;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 200px;
-  height: 250px;
-  padding: 20px 20px;
-  /* background-image: url('https://images.pexels.com/photos/1368382/pexels-photo-1368382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); */
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-  overflow: hidden;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background: orange;
 }
-figure:before, figure:after {
+
+.wrapper {
+  display: -webkit-box;
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+}
+
+.card {
+  width: 280px;
+  height: 360px;
+  border-radius: 15px;
+  padding: 1.5rem;
+  background: white;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  -webkit-transition: 0.4s ease-out;
+  transition: 0.4s ease-out;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+}
+.card:hover {
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+}
+.card:hover:before {
+  opacity: 1;
+
+}
+.card:hover .info {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+.card:before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+  display: block;
   width: 100%;
   height: 100%;
-}
-figure:before {
-  content: '';
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 0;
-}
-figure:after {
-  content: '';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-  overflow: hidden;
-}
-figure:hover {
-  background-size: 175%;
-}
-figure:hover:after {
-  content: '🚀';
-  background-color: rgba(241, 196, 15, 0.9);
-  color: white;
-  font-size: 72px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
   z-index: 2;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  opacity: 0;
 }
-figure:hover .date {
-  bottom: -59px;
-}
-figure:hover figcaption {
-  transform: translateY(-110%);
-}
-figure .date {
+.card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: absolute;
-  bottom: 0;
-  right: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 10px;
-  background-color: rgba(241, 196, 15, 0.8);
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  top: 0;
+  left: 0;
+  border-radius: 15px;
 }
-figure .date span {
+.card .info {
+  position: relative;
+  z-index: 3;
   color: white;
-  line-height: 1;
+  opacity: 0;
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
-figure .date span:first-child {
-  font-family: 'Source Code Pro', sans-serif;
-  font-size: 20px;
-  font-weight: 900;
+.card .info h1 {
+  margin: 0px;
 }
-figure .date span:last-child {
-  font-size: 14px;
-  font-weight: 400;
+.card .info p {
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-top: 8px;
 }
-figure figcaption {
+.card .info button {
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.card .info button:hover {
+  background: dodgerblue;
   color: white;
-  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-  z-index: 1;
 }
-figure figcaption h4 {
-  margin: 0 0 5px;
-  font-family: 'Source Code Pro', sans-serif;
-  font-size: 24px;
-  line-height: 1.35;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
-}
-figure figcaption h4 > span {
-  background-color: rgba(241, 196, 15, 0.8);
-}
-figure figcaption p {
-  margin: 0;
-  line-height: 1.5;
+
+.card2click{
+  top: -30px;
+  width : 252px;
+  background-color: white;
+  color: burlywood;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  text-align: center;
 }

@@ -15,13 +15,13 @@
 </head>
 <body>
   <div id="navbar">랜섬<br>여행</div>
-  <div id="infoBox">베타버전<br>입니다.<br>최종수정일자<br>7.22/2시 31분</div>
+  <div id="infoBox">베타버전<br>최종수정일자<br>7.22/15시 01분</div>
 
   <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/> NOW</div>
 
   <div id="loading">
     <img id="loading-image" src="/images/loading.gif" alt="데이터 로딩 중입니다" />
-    데이터 로딩 중입니다! 잠시만 기다려주세요
+    dataLoding...
   </div>
   <div id="map" style="width:100%;height:100vh;"></div>
   <!-- <script type="text/javascript" src="/data/data.js"></script> -->
@@ -45,8 +45,8 @@
 
 
   $.ajax({
-    url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
-    // url : "http://localhost:3000/register",
+    // url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
+    url : "http://localhost:3000/register",
     dataType :"json", // 데이터타입을 json 으로 받아옴
     success : function(data) {
         // alert("data로딩이 완료되었습니다.")
@@ -93,26 +93,19 @@
       //     </div>
       //   </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
 
-// ---------------
-var content =`
-<div style = "background-image:url(${target.picLink}); background-repeat: no-repeat; background-size: 200px 250px;background-position: center center;border-radius: 10px;">
-<a href="${target.moreLink}">
-    <figure>
-        <div class="date"><span class="card-date-day">랜섬</span><span class="card-date-month">여행</span></div>
-        <figcaption>
-            <h4> <span>${target.spot}</span></h4>
-            <p>${target.des}</p>
-        </figcaption>
-    </figure>
-</a>
-</div>
-`
-      
-  
-        
-        // --------------------
-
-        
+      var content =`
+        <div class="wrapper">
+          <div class="card"><img src="${target.picLink}"/>
+          <div style = "z-index:1000;color:white;"></div>
+            <div class="info">
+              <h3>${target.spot}</h3>
+              <p>${target.des}</p>
+              <a href="${target.moreLink}"><button>더 읽어보기</button></a>
+            </div>
+          </div>
+        </div>  
+        <div class="card2click">click🙈</div>
+        `
 
       var infowindow = new naver.maps.InfoWindow({
         content : content,
