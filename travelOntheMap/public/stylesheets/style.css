@@ -116,12 +116,14 @@ body {
 #current{
   position : absolute;
   /* top : 180px; */
-  bottom : 20px;
+  bottom : 40px;
   z-index: 1000;
   left: 20px;
   padding: 15px;
   text-align: center;
   cursor : pointer;
+  border: 1px solid skyblue;
+  border-radius: 20%;
 }
 
 .pulse{
@@ -283,7 +285,7 @@ body, html {
   width : 252px;
   background-color: white;
   color: burlywood;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 15px;
   text-align: center;
+  /* border: 1px solid burlywood; */
 }

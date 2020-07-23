@@ -23,9 +23,9 @@
 </head>
 <body>
   <div id="navbar">랜섬<br>여행</div>
-  <div id="infoBox">베타버전<br>최종수정일자<br>7.22/16:06</div>
+  <div id="infoBox">베타버전<br>최종수정일자<br>7.24/03:39</div>
 
-  <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/> NOW</div>
+  <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/><br></div>
 
   <div id="loading">
     <img id="loading-image" src="/images/loading.gif" alt="데이터 로딩 중입니다" />
@@ -53,8 +53,8 @@
 
 
   $.ajax({
-    url : "https://itjusttravel.herokuapp.com/register", // test.jsp 에서 받아옴
-    // url : "http://localhost:3000/register",
+    // url : "https://itjusttravel.herokuapp.com/file", // test.jsp 에서 받아옴
+    url : "http://localhost:3000/file",
     dataType :"json", // 데이터타입을 json 으로 받아옴
     success : function(data) {
         // alert("data로딩이 완료되었습니다.")
