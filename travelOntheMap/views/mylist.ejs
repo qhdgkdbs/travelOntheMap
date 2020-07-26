@@ -1,0 +1,66 @@
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link rel = "stylesheet" href="/stylesheets/myliststyle.css">
+
+</head>
+<body>
+    <div id="navbar">랜섬<br>여행</div>
+    <div id="infoBox">베타버전<br><a href="/">홈으로</a></div>
+
+    <div class="mylistcard"></div>
+    <script>
+        var output = localStorage.getItem("key");		
+        var myListArr = JSON.parse(output);
+
+        // console.log(myListArr[0])
+
+        var dataList;
+        var htmlData = "";
+
+        $.ajax({
+            // url : "https://itjusttravel.herokuapp.com/file", // test.jsp 에서 받아옴
+            url : "http://localhost:3000/file",
+            dataType :"json", // 데이터타입을 json 으로 받아옴
+            success : function(data) {
+                // alert("data로딩이 완료되었습니다.")
+                dataList = data;
+                setContent(); 
+                // $('#loading').hide();  
+            },
+            error : function(e) {
+                console.log(e.responseText);
+                console.log(e);
+            }
+        })
+
+        var setContent = function() {
+            // console.log(dataList)
+            // if(!myListArr)myListArr=[0]
+            for(var target of dataList){
+                if(myListArr.includes(target._id)){
+                console.log(target._id)
+                var content =`
+                <div class="wrapper">
+                    <div class="des">
+                        <div class="desTitle"><h3>${target.spot}</h3><div>
+                        <div class="desDes"><p>${target.des}</p><div>
+                    </div>
+                    <div class="card"><img src="${target.picLink}"/>
+                    <div style = "z-index:1000;color:white;"></div>
+                        <div class="info">
+                        <h3>${target.spot}</h3>
+                        <p>${target.des}</p>
+                        <a href="${target.moreLink}"><button>더 읽어보기</button></a>
+                        </div>
+                    </div>
+                    </div>  
+                `
+                htmlData = htmlData + content
+
+            }
+        }
+        $(".mylistcard").html(htmlData)
+    
+        }
+    </script>
+</body>

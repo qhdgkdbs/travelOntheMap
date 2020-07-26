@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>여행을 가고 싶어서 만드는 중</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../public/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../public/images/favicon.ico">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
@@ -13,7 +15,7 @@
     <script type="text/javascript" src="/src/MarkerClustering.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173208515-1"></script>
-    <script>ㄹㄹ
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -23,7 +25,12 @@
 </head>
 <body>
   <div id="navbar">랜섬<br>여행</div>
-  <div id="infoBox">베타버전<br>최종수정내용<br>데이터에디터추가</div>
+  <div id="infoBox">베타버전</div>
+  <div id="mytravel"><a href="/mylist">나의 여행지</a></div>
+  <div id="poster"><a href="/updateinfo">업데이트내역</a></div>
+
+
+  
 
   <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/><br></div>
 
@@ -70,7 +77,7 @@
 
   var setContent = function() {
     for(var target of dataList){
-      console.log(typeof(target))
+      // console.log(typeof(target))
       // var target = dataList[i]
       var latlng = new naver.maps.LatLng(target.lat, target.lng) //위도 경도
       marker = new naver.maps.Marker({
@@ -84,22 +91,6 @@
           anchor : new naver.maps.Point(16,20) // 중심 좌표를 변경해주는 것
         }
       })
-      
-
-      // var content = `<div class='infowindow_wraps'>
-      //     <div class="infoImg"><img src="${target.picLink}" width=200 hdight=200></div>
-      //     <div class="infowindow_text">
-      //       <div class='infowindow_title'>${target.spot}</div>
-      //       <div class='infowindow_content'>👉 ${target.des}</div>
-      //       <div class='infowindow_more'>
-      //         <a href="${target.moreLink}" title="인스타그램에서 더 확인하기" target="_blank">
-      //           <div class='infowindow_more_icon'>
-      //             <img src="/images/more_icon.png" width=32 hdight=32>
-      //           </div>
-      //         </a>
-      //         </div>
-      //     </div>
-      //   </div>` // ${}이런식으로 변수선언이 가능함, string을 담는 값
 
       var content =`
         <div class="wrapper">
@@ -113,6 +104,9 @@
           </div>
         </div>  
         <div class="card2click">click🙈</div>
+        <button onclick="saveSpot('${target._id}');">Save me</button>
+        <button onclick="console.log(JSON.parse(localStorage.getItem('key')))">Show me</button>
+
         `
 
       var infowindow = new naver.maps.InfoWindow({
@@ -194,6 +188,16 @@
     }
   }
 
+  function saveSpot(spot_id){
+    var saved = JSON.parse(localStorage.getItem('key'));
+    if(!saved){saved = []}
+    console.log(spot_id)
+    saved.push(spot_id)
+
+    saved = Array.from(new Set(saved));
+    localStorage.setItem("key", JSON.stringify(saved));
+  }
+
   function getClickHandler(i) {
     return function(){
       var marker = markerList[i];
@@ -245,9 +249,8 @@
 
 
   </script>
-  <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f1d32cdaba5b518"></script>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f1d32cdaba5b518"></script>
 
 </body>
 </html>

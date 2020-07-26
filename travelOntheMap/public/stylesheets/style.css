@@ -21,7 +21,7 @@ body {
 }
 
 #infoBox{
-  height:80px;
+  height:40px;
   width :80px;
   background: thistle;
   color : #262626;
@@ -37,6 +37,39 @@ body {
   text-align: center;
 }
 
+#mytravel {
+  height:40px;
+  width :80px;
+  background: thistle;
+  color : #262626;
+  font-weight: bolder;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10001;
+  top: 140px;
+  left: 20px;
+  text-align: center;
+}
+
+#poster{
+  height:40px;
+  width :80px;
+  background: thistle;
+  color : #262626;
+  font-weight: bolder;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10001;
+  top: 180px;
+  left: 20px;
+  text-align: center;
+}
 
 /* .marker {
   border : 1px solid black;
@@ -116,14 +149,12 @@ body {
 #current{
   position : absolute;
   /* top : 180px; */
-  bottom : 40px;
+  bottom : 20px;
   z-index: 1000;
-  left: 20px;
-  padding: 15px;
+  right: 20px;
+  /* padding: 15px; */
   text-align: center;
   cursor : pointer;
-  border: 1px solid skyblue;
-  border-radius: 20%;
 }
 
 .pulse{

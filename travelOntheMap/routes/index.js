@@ -8,5 +8,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' })
 });
 
+router.get('/mylist', function(req, res, next) {  
+  res.render('mylist', { title: 'Express' })
+});
+
+router.get('/updateinfo', function(req, res, next) {  
+  res.render('updateinfo', { title: 'Express' })
+});
+
 
 module.exports = router;
