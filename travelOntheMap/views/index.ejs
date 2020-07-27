@@ -29,9 +29,6 @@
   <div id="mytravel"><a href="/mylist">나의 여행지</a></div>
   <div id="poster"><a href="/updateinfo">업데이트내역</a></div>
 
-
-  
-
   <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/><br></div>
 
   <div id="loading">
@@ -41,6 +38,10 @@
   <div id="map" style="width:100%;height:100vh;"></div>
   <!-- <script type="text/javascript" src="/data/data.js"></script> -->
   <script>
+    var urlAdd = "http://localhost:3000/"  
+    if(!window.location.href === "http://localhost:3000/"){
+      urlAdd = "https://itjusttravel.herokuapp.com/"
+    }
 
   var mapOptions = {
       center: new naver.maps.LatLng(37.531471, 126.979514),
@@ -53,15 +54,13 @@
   var infowindowList = [];
   var dataList;
 
-  // $(window).load(function() {    
-  //         $('#loading').hide();  
-  // });
+  var output = localStorage.getItem("key");		
+  var myListArr = JSON.parse(output);
 
-
+  var isitSavedImg = "#";
 
   $.ajax({
-    url : "https://itjusttravel.herokuapp.com/file", // test.jsp 에서 받아옴
-    // url : "http://localhost:3000/file",
+    url : urlAdd + 'file',
     dataType :"json", // 데이터타입을 json 으로 받아옴
     success : function(data) {
         // alert("data로딩이 완료되었습니다.")
@@ -91,6 +90,18 @@
           anchor : new naver.maps.Point(16,20) // 중심 좌표를 변경해주는 것
         }
       })
+      
+      var isItSavedText = ""
+
+      if(myListArr.includes(target._id)){
+        // 저장되어있다면
+        isItSavedText = "삭제";
+        isitSavedImg = "images/delete.png";
+      }else{
+        // 저장안되어 있음
+        isItSavedText = "담기";
+        isitSavedImg = "images/plus.png";
+      }
 
       var content =`
         <div class="wrapper">
@@ -104,10 +115,16 @@
           </div>
         </div>  
         <div class="card2click">click🙈</div>
-        <button onclick="saveSpot('${target._id}');">Save me</button>
-        <button onclick="console.log(JSON.parse(localStorage.getItem('key')))">Show me</button>
 
+      
+        <div class="myTravelSpot">
+          <span class="isItSavedText">${isItSavedText}</span>
+          <img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="16" height="16" onclick='saveOrDeleteRedirect("${target._id}")'>
+        </div>
         `
+        // <button onclick="saveSpot('${target._id}');">Save me</button>
+        // changeImage("https://i.postimg.cc/d061bMYv/favicon-1.png");
+        // <button onclick="console.log(JSON.parse(localStorage.getItem('key')))">Show me</button>
 
       var infowindow = new naver.maps.InfoWindow({
         content : content,
@@ -180,7 +197,29 @@
     });
   }
 
- 
+  function changeImage(a) {
+      document.getElementByClass("img").src=a;
+  }
+
+  function saveOrDeleteRedirect(id){
+    var output = localStorage.getItem("key");		
+    var myListArr = JSON.parse(output);
+    if(!myListArr.includes(id)){
+      //저장되어있지 않으면
+      //저장로직
+      saveSpot(id);
+      $(".isItSavedImg").attr("src", "images/delete.png");
+      $(".isItSavedText").text("삭제");
+    }else{
+      //저장된 것이라면 
+      //삭제로직 + 저장
+      myListArr.splice(myListArr.indexOf(id),1)
+      localStorage.setItem("key", JSON.stringify(myListArr));
+      $(".isItSavedImg").attr("src", "images/plus.png");
+      $(".isItSavedText").text("담기");
+    }
+    // window.location.href =urlAdd;
+  }
   function clickMap(i) {
     return function(){
       var infowindow = infowindowList[i]
@@ -248,9 +287,11 @@
   })
 
 
+
   </script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f1d32cdaba5b518"></script>
+  
 
 </body>
 </html>

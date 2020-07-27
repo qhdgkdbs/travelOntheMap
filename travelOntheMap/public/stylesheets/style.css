@@ -316,7 +316,19 @@ body, html {
   width : 252px;
   background-color: white;
   color: burlywood;
-  border-radius: 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   text-align: center;
   /* border: 1px solid burlywood; */
+}
+
+/* dd */
+.myTravelSpot{
+  top: -60px;
+  width : 252px;
+  background-color: white;
+  color: burlywood;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  text-align: center;
 }

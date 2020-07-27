@@ -4,6 +4,7 @@ const { Spot } = require("../models/Spot");
 const config = require("../config/key");
 
 const mongoose = require('mongoose')
+
 mongoose.connect(config.mongoURL , { 
     useNewUrlParser : true, useUnifiedTopology : true, useCreateIndex : true, useFindAndModify : false
 }).then(() => console.log("MONGO_DB connected"))
