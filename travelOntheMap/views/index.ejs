@@ -96,11 +96,11 @@
           if(myListArr.includes(target._id)){
             // 저장되어있다면
             isItSavedText = "삭제";
-            isitSavedImg = "images/delete.png";
+            isitSavedImg = "https://i.postimg.cc/sgQGXBGD/icon-18.png";
           }else{
             // 저장안되어 있음
             isItSavedText = "담기";
-            isitSavedImg = "images/plus.png";
+            isitSavedImg = "https://i.postimg.cc/NFd2ymxL/icon-17.png";
           }
         }
       }
@@ -209,14 +209,14 @@
         //저장되어있지 않으면
         //저장로직
         saveSpot(id);
-        $(".isItSavedImg").attr("src", "images/delete.png");
+        $(".isItSavedImg").attr("src", "https://i.postimg.cc/sgQGXBGD/icon-18.png");
         $(".isItSavedText").text("삭제");
       }else{
         //저장된 것이라면 
         //삭제로직 + 저장
         myListArr.splice(myListArr.indexOf(id),1)
         localStorage.setItem("key", JSON.stringify(myListArr));
-        $(".isItSavedImg").attr("src", "images/plus.png");
+        $(".isItSavedImg").attr("src", "https://i.postimg.cc/NFd2ymxL/icon-17.png");
         $(".isItSavedText").text("담기");
       }
     }
