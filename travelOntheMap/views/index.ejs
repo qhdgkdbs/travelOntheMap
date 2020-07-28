@@ -33,7 +33,7 @@
 
   <div id="loading">
     <img id="loading-image" src="/images/loading.gif" alt="데이터 로딩 중입니다" />
-    dataLoding...
+    로딩 중
   </div>
   <div id="map" style="width:100%;height:100vh;"></div>
   <!-- <script type="text/javascript" src="/data/data.js"></script> -->
@@ -112,19 +112,16 @@
               <a href="${target.moreLink}"><button>더 읽어보기</button></a>
             </div>
           </div>
-        </div>  
-        <div class="card2click">click🙈</div>
-
-      
-        <div class="myTravelSpot">
-          <span class="isItSavedText">${isItSavedText}</span>
-          <img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="16" height="16" onclick='saveOrDeleteRedirect("${target._id}")'>
+        </div> 
+        <div class = "bottomButton" > 
+          <span onclick='saveOrDeleteRedirect("${target._id}")' class="card2click">SAVE<img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="20" height="20" ></span>
         </div>
         `
+        // <span class="isItSavedText" >${isItSavedText}</span>
+
         // <button onclick="saveSpot('${target._id}');">Save me</button>
         // changeImage("https://i.postimg.cc/d061bMYv/favicon-1.png");
         // <button onclick="console.log(JSON.parse(localStorage.getItem('key')))">Show me</button>
-
       var infowindow = new naver.maps.InfoWindow({
         content : content,
         backgroundColor : "#00ff0000",
