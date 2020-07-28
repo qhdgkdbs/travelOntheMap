@@ -53,8 +53,9 @@
   var infowindowList = [];
   var dataList;
 
-  var output = localStorage.getItem("key");		
-  var myListArr = JSON.parse(output);
+  var output = localStorage.getItem("key");
+  var myListArr = [];
+  myListArr = JSON.parse(output);
 
   var isitSavedImg = "#";
 
@@ -91,6 +92,7 @@
       })
       
       var isItSavedText = ""
+      
       if(target._id){
         if(myListArr){
           if(myListArr.includes(target._id)){
@@ -203,7 +205,8 @@
 
   function saveOrDeleteRedirect(id){
     var output = localStorage.getItem("key");		
-    var myListArr = JSON.parse(output);
+    var myListArr = [];
+    myListArr = JSON.parse(output);
     if(myListArr){
       if(!myListArr.includes(id)){
         //저장되어있지 않으면
