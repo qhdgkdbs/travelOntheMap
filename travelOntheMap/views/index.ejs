@@ -54,8 +54,10 @@
   var dataList;
 
   var output = localStorage.getItem("key");
-  var myListArr = [0];
-  myListArr = JSON.parse(output);
+  var myListArr = [0,1,2];
+  if(output){
+    myListArr = JSON.parse(output);
+  }
 
   var isitSavedImg = "#";
 
@@ -205,8 +207,10 @@
   function saveOrDeleteRedirect(id){
     var output = localStorage.getItem("key");		
     var myListArr = [0];
-    myListArr = JSON.parse(output);
-  
+    if(output){
+      myListArr = JSON.parse(output);
+    }
+    
     if(!myListArr.includes(id)){
       //저장되어있지 않으면
       //저장로직
