@@ -91,16 +91,18 @@
       })
       
       var isItSavedText = ""
-
-      if(myListArr.includes(target._id)){
-        // 저장되어있다면
-        isItSavedText = "삭제";
-        isitSavedImg = "images/delete.png";
-      }else{
-        // 저장안되어 있음
-        isItSavedText = "담기";
-        isitSavedImg = "images/plus.png";
+      if(target._id){
+        if(myListArr.includes(target._id)){
+          // 저장되어있다면
+          isItSavedText = "삭제";
+          isitSavedImg = "images/delete.png";
+        }else{
+          // 저장안되어 있음
+          isItSavedText = "담기";
+          isitSavedImg = "images/plus.png";
+        }
       }
+      
 
       var content =`
         <div class="wrapper">
