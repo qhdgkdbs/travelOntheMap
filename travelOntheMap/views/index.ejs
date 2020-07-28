@@ -204,19 +204,21 @@
   function saveOrDeleteRedirect(id){
     var output = localStorage.getItem("key");		
     var myListArr = JSON.parse(output);
-    if(!myListArr.includes(id)){
-      //저장되어있지 않으면
-      //저장로직
-      saveSpot(id);
-      $(".isItSavedImg").attr("src", "images/delete.png");
-      $(".isItSavedText").text("삭제");
-    }else{
-      //저장된 것이라면 
-      //삭제로직 + 저장
-      myListArr.splice(myListArr.indexOf(id),1)
-      localStorage.setItem("key", JSON.stringify(myListArr));
-      $(".isItSavedImg").attr("src", "images/plus.png");
-      $(".isItSavedText").text("담기");
+    if(myListArr){
+      if(!myListArr.includes(id)){
+        //저장되어있지 않으면
+        //저장로직
+        saveSpot(id);
+        $(".isItSavedImg").attr("src", "images/delete.png");
+        $(".isItSavedText").text("삭제");
+      }else{
+        //저장된 것이라면 
+        //삭제로직 + 저장
+        myListArr.splice(myListArr.indexOf(id),1)
+        localStorage.setItem("key", JSON.stringify(myListArr));
+        $(".isItSavedImg").attr("src", "images/plus.png");
+        $(".isItSavedText").text("담기");
+      }
     }
     // window.location.href =urlAdd;
   }
