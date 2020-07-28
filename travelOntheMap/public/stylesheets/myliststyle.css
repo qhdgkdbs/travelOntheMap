@@ -4,6 +4,13 @@
     margin : 0px !important;
   }
   
+  .sideBar{
+    float: left;
+    background-color: beige;
+    height:500px;
+
+  }
+  
   #navbar{
     height:80px;
     width :80px;
@@ -71,6 +78,21 @@
     left: 20px;
     text-align: center;
   }
+
+  .header{
+    position: absolute;
+    width: 150px;
+    height : 40px;
+    top : 20px;
+    left : 150px;
+    color : black;
+  }
+
+  .mylistcard{
+    top : 60px;
+    left : 150px;
+    position: absolute;
+  }
   /* ////////// */
 
   body
@@ -100,11 +122,13 @@ p
 
 .center
 {
-  height:100vh;
-  width:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  float: left;
+  height:350px;
+  width:250px;
+  /* display: flex;
+  /* justify-content: center; */
+  /* align-items: center;
+  flex-direction: initial;  */
 }
 
 /* End Non-Essential  */
@@ -135,7 +159,7 @@ p
 
 .property-image
 {
-  height:6em;
+  height:10em;
   width:14em;
   padding:1em 2em;
   position:Absolute;
@@ -152,7 +176,7 @@ p
 .property-description
 {
   background-color: #FAFAFC;
-  height:12em;
+  height:8em;
   width:14em;
   position:absolute;
   bottom:0em;
