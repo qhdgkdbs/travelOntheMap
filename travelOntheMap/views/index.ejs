@@ -54,7 +54,7 @@
   var dataList;
 
   var output = localStorage.getItem("key");
-  var myListArr = [];
+  var myListArr = [0];
   myListArr = JSON.parse(output);
 
   var isitSavedImg = "#";
@@ -73,9 +73,10 @@
         console.log(e);
     }
   })
-
+  
+  var target = {" ":" "};
   var setContent = function() {
-    for(var target of dataList){
+    for(target of dataList){
       // console.log(typeof(target))
       // var target = dataList[i]
       var latlng = new naver.maps.LatLng(target.lat, target.lng) //위도 경도
@@ -93,19 +94,17 @@
       
       var isItSavedText = ""
       
-      if(target._id){
-        if(myListArr){
-          if(myListArr.includes(target._id)){
-            // 저장되어있다면
-            isItSavedText = "삭제";
-            isitSavedImg = "https://i.postimg.cc/sgQGXBGD/icon-18.png";
-          }else{
-            // 저장안되어 있음
-            isItSavedText = "담기";
-            isitSavedImg = "https://i.postimg.cc/NFd2ymxL/icon-17.png";
-          }
-        }
+
+      if(myListArr.includes(target._id)){
+        // 저장되어있다면
+        isItSavedText = "삭제";
+        isitSavedImg = "https://i.postimg.cc/sgQGXBGD/icon-18.png";
+      }else{
+        // 저장안되어 있음
+        isItSavedText = "담기";
+        isitSavedImg = "https://i.postimg.cc/NFd2ymxL/icon-17.png";
       }
+
       
 
       var content =`
@@ -205,24 +204,24 @@
 
   function saveOrDeleteRedirect(id){
     var output = localStorage.getItem("key");		
-    var myListArr = [];
+    var myListArr = [0];
     myListArr = JSON.parse(output);
-    if(myListArr){
-      if(!myListArr.includes(id)){
-        //저장되어있지 않으면
-        //저장로직
-        saveSpot(id);
-        $(".isItSavedImg").attr("src", "https://i.postimg.cc/sgQGXBGD/icon-18.png");
-        $(".isItSavedText").text("삭제");
-      }else{
-        //저장된 것이라면 
-        //삭제로직 + 저장
-        myListArr.splice(myListArr.indexOf(id),1)
-        localStorage.setItem("key", JSON.stringify(myListArr));
-        $(".isItSavedImg").attr("src", "https://i.postimg.cc/NFd2ymxL/icon-17.png");
-        $(".isItSavedText").text("담기");
-      }
+  
+    if(!myListArr.includes(id)){
+      //저장되어있지 않으면
+      //저장로직
+      saveSpot(id);
+      $(".isItSavedImg").attr("src", "https://i.postimg.cc/sgQGXBGD/icon-18.png");
+      $(".isItSavedText").text("삭제");
+    }else{
+      //저장된 것이라면 
+      //삭제로직 + 저장
+      myListArr.splice(myListArr.indexOf(id),1)
+      localStorage.setItem("key", JSON.stringify(myListArr));
+      $(".isItSavedImg").attr("src", "https://i.postimg.cc/NFd2ymxL/icon-17.png");
+      $(".isItSavedText").text("담기");
     }
+  
     // window.location.href =urlAdd;
   }
   function clickMap(i) {
