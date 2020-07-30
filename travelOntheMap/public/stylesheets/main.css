@@ -394,7 +394,7 @@
 				font-size: 0.8em;
 			}
 			.thumbnails > div {
-				width: calc(100% / 3);
+				width: calc(100% / 2);
 
 			}
 
