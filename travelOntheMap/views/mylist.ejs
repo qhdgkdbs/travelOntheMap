@@ -1,19 +1,28 @@
 <head>
+    <title>나의 여행지</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="js/skel.min.js"></script>
+    <!-- <script src="js/main.js"></script> -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <link rel = "stylesheet" href="/stylesheets/myliststyle.css">
 
 </head>
 <body>
-    <div class = "sideBar">
-        <div id="navbar">랜섬<br>여행</div>
-        <div id="infoBox">베타버전</div>
-        <div id="mytravel"><a href="/">홈으로</a></div>
-        <div id="poster"><a href="/updateinfo">업데이트내역</a></div>
+    <div id="wrapper">
+        <header id="header">
+            <h1>나의 여행지,<br/>준비가 되었다면 출발해요.</h1>
+            <h5>"나의 여행지는 최대 20곳만 담을 수 있습니다"</h5>
+        </header>
+        <section id="main">
+            <section class="thumbnails scrolling-wrapper"></section>
+        </section>
+
+        <footer id="footer">
+            <p>&copy; 관리자 이메일 : qhdgkdbs@gmail.com <br>오류가 있다면 제보 해주세요</p>
+        </footer>
     </div>
 
-    <div class="header">나의 여행지 리스트</div>
-
-    <div class="mylistcard"></div>
     <script>
         // var urlAdd = "http://localhost:3000/"  
         var urlAdd = "https://itjusttravel.herokuapp.com/"
@@ -51,28 +60,40 @@
                 
                 if(myListArr.includes(target._id)){
                     console.log(target._id)
-                    var content =`
-                    <div class="center">
-                        <div class="property-card">
+                    // var content =`
+                    // <div class="center">
+                    //     <div class="property-card">
+                    //         <a href="'${target.moreLink}'">
+                    //         <div class="property-image" style = "background-image : url('${target.picLink}')">
+                    //         </div></a>
+                    //         <div class="property-description">
+                    //         <h5> '${target.spot}' </h5>
+                    //         <p>'${target.des}'</p>
+                    //         </div>
+                    //         <a href="'${target.moreLink}'">
+                    //         <div class="property-social-icons">
+                    //             <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+                    //         </div>
+                    //         </a>
+                    //     </div>
+                    // </div> 
+                    // `
+                    var  content = `
+                        <div class="card">
                             <a href="'${target.moreLink}'">
-                            <div class="property-image" style = "background-image : url('${target.picLink}')">
-                            </div></a>
-                            <div class="property-description">
-                            <h5> '${target.spot}' </h5>
-                            <p>'${target.des}'</p>
-                            </div>
+                                <img src="${target.picLink}" alt="" />
+                                <h3>'${target.spot}'</h3>
+                            </a>
                             <a href="'${target.moreLink}'">
-                            <div class="property-social-icons">
-                                <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
-                            </div>
+                                <img src="${target.picLink}" alt="" />
+                                <h3>'${target.spot}'</h3>
                             </a>
                         </div>
-                    </div> 
-                    `
+                    ` 
                     htmlData = htmlData + content                 
                 }           
         }
-        $(".mylistcard").html(htmlData)
+        $(".thumbnails").html(htmlData)
         }
     </script>
 
