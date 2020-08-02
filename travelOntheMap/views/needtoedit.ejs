@@ -24,8 +24,8 @@
     </div>
 
     <script>
-        var urlAdd = "http://localhost:3000/"  
-        // var urlAdd = "https://itjusttravel.herokuapp.com/"
+        var urlAdd = "http://localhost:3000/recomanded"  
+        // var urlAdd = "https://itjusttravel.herokuapp.com/recomanded"
 
         var output = localStorage.getItem("key");		
         var myListArr = []
@@ -37,8 +37,8 @@
         var htmlData = "";
 
         $.ajax({
-            // url : "https://itjusttravel.herokuapp.com/file", // test.jsp 에서 받아옴
-            // url : "http://localhost:3000/file",
+            // url : "https://itjusttravel.herokuapp.com/recomanded", // test.jsp 에서 받아옴
+            // url : "http://localhost:3000/recomanded",
             url :  urlAdd + 'file',
             dataType :"json", // 데이터타입을 json 으로 받아옴
             success : function(data) {
