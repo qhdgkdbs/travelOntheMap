@@ -24,8 +24,8 @@
     </div>
 
     <script>
-        // var urlAdd = "http://localhost:3000/"  
-        var urlAdd = "https://itjusttravel.herokuapp.com/"
+        var urlAdd = "http://localhost:3000/"  
+        // var urlAdd = "https://itjusttravel.herokuapp.com/"
 
         var output = localStorage.getItem("key");		
         var myListArr = []
@@ -56,43 +56,27 @@
         var setContent = function() {
             // console.log(dataList)
             // if(!myListArr)myListArr=[0]
+
+            var content = `<div class="card">`
+
             for(var target of dataList){
                 
                 if(myListArr.includes(target._id)){
                     console.log(target._id)
-                    // var content =`
-                    // <div class="center">
-                    //     <div class="property-card">
-                    //         <a href="'${target.moreLink}'">
-                    //         <div class="property-image" style = "background-image : url('${target.picLink}')">
-                    //         </div></a>
-                    //         <div class="property-description">
-                    //         <h5> '${target.spot}' </h5>
-                    //         <p>'${target.des}'</p>
-                    //         </div>
-                    //         <a href="'${target.moreLink}'">
-                    //         <div class="property-social-icons">
-                    //             <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
-                    //         </div>
-                    //         </a>
-                    //     </div>
-                    // </div> 
-                    // `
-                    var  content = `
-                        <div class="card">
+                    
+                    content = content +` 
                             <a href="'${target.moreLink}'">
                                 <img src="${target.picLink}" alt="" />
                                 <h3>'${target.spot}'</h3>
                             </a>
-                            <a href="'${target.moreLink}'">
-                                <img src="${target.picLink}" alt="" />
-                                <h3>'${target.spot}'</h3>
-                            </a>
-                        </div>
+                        
                     ` 
-                    htmlData = htmlData + content                 
                 }           
         }
+        content = content +`</div>`
+        htmlData = htmlData + content                 
+
+
         $(".thumbnails").html(htmlData)
         }
     </script>

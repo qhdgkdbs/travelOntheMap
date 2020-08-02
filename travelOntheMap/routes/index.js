@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' })
 });
 
+router.get('/mycolumbus', function(req, res, next) {  
+  res.render('mycolumbus', { title: 'Express' })
+});
+
 router.get('/mylist', function(req, res, next) {  
   res.render('mylist', { title: 'Express' })
 });
