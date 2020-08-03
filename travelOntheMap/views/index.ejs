@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="stylesheets/animate.css">
 <link rel="stylesheet" href="stylesheets/magnific-popup.css">
 <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
 
 <!-- Main css -->
 <link rel="stylesheet" href="stylesheets/tooplate-style.css">
@@ -55,12 +57,16 @@
           <div class="row">
 
                <div class="col-md-4 col-sm-8">
-                    <img src="images/travelonmap1.jpg" class="wow fadeInUp img-responsive" data-wow-delay="0.2s" alt="about image" height="300px" width="300px">
-                    <div class="wow fadeInUp" data-wow-delay="0.2s">
-                         <h4>지도 위에서 여행을 떠나요🚀</h4>
-                         <p>해외여행을 못 가는 당신, 국내여행이라도, 아니면 랜섬여행이라도 떠나요</p>
-                         <a href="https://itjusttravel.herokuapp.com/columbus" style="background-color: cadetblue; color: beige;">지금, 랜선여행 떠나기 🚀🚀</a>
-                    </div>
+                    <a href="https://itjusttravel.herokuapp.com/columbus" style="background-color: cadetblue; color: beige;">
+                         <img src="images/travelonmap1.jpg" class="wow fadeInUp img-responsive" data-wow-delay="0.2s" alt="about image" height="300px" width="300px">
+                         <div class="wow fadeInUp" data-wow-delay="0.2s">
+                              <h4><span style="color:white;">지도 위에서 여행을 떠나요🙈</span></h4>
+                              <p><span style="color:white;">해외여행을 못 가는 당신, 국내여행이라도, 아니면 랜섬여행이라도 떠나요</span></p>
+                              <p>
+                                   <span style="border-radius:12px; background-color: azure; color:cadetblue; padding:8px; font-size: 24px;"> 지금, 떠나기 🚀</span>
+                              </p>
+                         </div>
+                    </a>
                </div>
 
                <div class="col-md-8 col-sm-12">
@@ -92,19 +98,8 @@
                          <p>우리는 가끔 쉬어야해요, 다른 사람들은 어떤 여행을 떠나고 있는지 알아봐요.</p>
                     </div>
                </div>
-
-               <div class="wow fadeInUp col-md-3 col-sm-6" data-wow-delay="0.1s">
-                    <!-- WORK THUMB -->
-                    <div class="work-thumb">
-                         <a href="images/work-1.jpg" class="image-popup">
-                              <img src="images/work-1.jpg" class="img-responsive" alt="Fine Arts">
-                         </a>
-                    </div>
-                    <h4>Fine Arts</h4>
-                    <a href="https://itjusttravel.herokuapp.com/" style="background-color: cadetblue; color: beige;">지금, 여기로 떠나기 🚀🚀</a>
-
-             
-
+               <!-- WORK THUMB -->
+               <div id = "recomandedSpot"></div>
 
           </div>
      </div>
@@ -160,6 +155,61 @@
 </footer>
 
 <!-- SCRIPTS -->
+<script>
+     var urlAdd = "http://localhost:3000/"  
+     // var urlAdd = "https://itjusttravel.herokuapp.com/recomanded"
+
+
+     var dataList;
+     var htmlData = "";
+
+     $.ajax({
+          url :  urlAdd + 'file/recomanded',
+          dataType :"json", // 데이터타입을 json 으로 받아옴
+          success : function(data) {
+               // alert("data로딩이 완료되었습니다.")
+               dataList = data;
+               setContent(); 
+               // $('#loading').hide();  
+          },
+          error : function(e) {
+               console.log(e.responseText);
+               console.log(e);
+          }
+     })
+
+     var setContent = function() {
+          // console.log(dataList)
+          // if(!myListArr)myListArr=[0]
+
+          var content = ``
+
+          for(var target of dataList){
+  
+               console.log(target._id)
+               
+               content = content +      
+                    `
+                    <div class="wow fadeInUp col-md-3 col-sm-6" data-wow-delay="0.1s">               
+                         <div class="work-thumb">
+                              <a href="${target.moreLink}" class="image-popup">
+                                   <img src="${target.picLink}" class="img-responsive" alt="Fine Arts">
+                              </a>
+                         </div>
+                         
+                         <a href="${target.moreLink}" style="background-color: cadetblue; color: beige; font-size:18px; padding : 3px; border-radius:5px; width:100%">지금, <span style="color:white;">${target.spot}</span>로 떠나기 🚀🚀</a>
+                    </div>
+                    `       
+          }
+     htmlData = htmlData + content                 
+
+
+     $("#recomandedSpot").html(htmlData)
+     } 
+
+
+
+</script>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.parallax.js"></script>
