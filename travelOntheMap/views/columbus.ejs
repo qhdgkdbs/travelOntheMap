@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+   
     <title>여행을 가고 싶어서 만드는 중</title>
     <link rel="shortcut icon" href="https://i.postimg.cc/d061bMYv/favicon-1.png" type="image/x-icon">
     <link rel="icon" href="https://i.postimg.cc/d061bMYv/favicon-1.png" type="image/x-icon">
+
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
-    <link rel = "stylesheet" href="/stylesheets/style.css">
+    <link rel = "stylesheet" href="/stylesheets/style.css">  
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9mlra4rwwq"></script>
     <script type="text/javascript" src="/src/MarkerClustering.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -93,16 +98,13 @@
         }
       })
       
-      var isItSavedText = ""
       
 
       if(myListArr.includes(target._id)){
         // 저장되어있다면
-        isItSavedText = "삭제";
         isitSavedImg = "https://i.postimg.cc/sgQGXBGD/icon-18.png";
       }else{
         // 저장안되어 있음
-        isItSavedText = "담기";
         isitSavedImg = "https://i.postimg.cc/NFd2ymxL/icon-17.png";
       }
 
@@ -120,14 +122,10 @@
           </div>
         </div> 
         <div class = "bottomButton" > 
-          <span onclick='saveOrDeleteRedirect("${target._id}")' class="card2click">SAVE<img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="20" height="20" ></span>
+          <span onclick='saveOrDeleteRedirect("${target._id}")' class="card2click">SAVE<img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="20" height="20" /></span>
         </div>
         `
-        // <span class="isItSavedText" >${isItSavedText}</span>
 
-        // <button onclick="saveSpot('${target._id}');">Save me</button>
-        // changeImage("https://i.postimg.cc/d061bMYv/favicon-1.png");
-        // <button onclick="console.log(JSON.parse(localStorage.getItem('key')))">Show me</button>
       var infowindow = new naver.maps.InfoWindow({
         content : content,
         backgroundColor : "#00ff0000",
@@ -199,10 +197,6 @@
     });
   }
 
-  function changeImage(a) {
-      document.getElementByClass("img").src=a;
-  }
-
   function saveOrDeleteRedirect(id){
     var output = localStorage.getItem("key");		
     var myListArr = [0];
@@ -215,14 +209,12 @@
       //저장로직
       saveSpot(id);
       $(".isItSavedImg").attr("src", "https://i.postimg.cc/sgQGXBGD/icon-18.png");
-      $(".isItSavedText").text("삭제");
     }else{
       //저장된 것이라면 
       //삭제로직 + 저장
       myListArr.splice(myListArr.indexOf(id),1)
       localStorage.setItem("key", JSON.stringify(myListArr));
       $(".isItSavedImg").attr("src", "https://i.postimg.cc/NFd2ymxL/icon-17.png");
-      $(".isItSavedText").text("담기");
     }
   
     // window.location.href =urlAdd;
