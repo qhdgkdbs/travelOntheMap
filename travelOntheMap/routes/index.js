@@ -18,5 +18,9 @@ router.get('/updateinfo', function(req, res, next) {
   res.render('updateinfo', { title: 'Express' })
 });
 
+router.get('/appmylist', function(req, res, next) {  
+  res.render('app_mylist', { title: 'Express' })
+});
+
 
 module.exports = router;
