@@ -219,6 +219,8 @@ a:hover, a:active, a:focus {
   height: 40vh;
   text-align: center;
   position: relative;
+  justify-content: center
+  
   /* margin: 82px 12px 0 12px; */
 }
 
@@ -490,8 +492,4 @@ footer .dash-line {
 }
 
 @media (max-width: 360px) {
-  #home {
-    height: 85vh;
-  } 
-
 }

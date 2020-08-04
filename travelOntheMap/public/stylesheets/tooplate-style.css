@@ -220,11 +220,13 @@ a:hover, a:active, a:focus {
   text-align: center;
   position: relative;
   margin: 82px 12px 0 12px;
+  justify-content: center
 }
 
 .home-wrapper {
   background: rgba(250,250,250,0.8);
   padding: 32px 12px;
+
 }
 
 
@@ -490,8 +492,4 @@ footer .dash-line {
 }
 
 @media (max-width: 360px) {
-  #home {
-    height: 85vh;
-  } 
-
 }
