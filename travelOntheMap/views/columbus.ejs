@@ -29,12 +29,12 @@
     </script>
 </head>
 <body>
-  <div id="navbar">랜섬<br>여행</div>
+  <!-- <div id="navbar">랜섬<br>여행</div>
   <div id="infoBox">베타버전</div>
   <div id="mytravel"><a href="/mylist">나의 여행지</a></div>
-  <div id="poster"><a href="/updateinfo">업데이트내역</a></div>
+  <div id="poster"><a href="/updateinfo">업데이트내역</a></div> -->
 
-  <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/><br></div>
+  <!-- <div id="current"><img src="/images/nowLocation1.png" height="30px" width="30px"/><br></div> -->
 
   <div id="loading">
     <img id="loading-image" src="/images/loading.gif" alt="데이터 로딩 중입니다" />
@@ -42,6 +42,12 @@
   </div>
   <div id="map" style="width:100%;height:100vh;"></div>
   <!-- <script type="text/javascript" src="/data/data.js"></script> -->
+  <nav>
+    <a href="https://itjusttravel.herokuapp.com/mylist"><span>나의, 여행지<br>🙈</span></a>
+    <a href="https://itjusttravel.herokuapp.com/"><span>홈화면으로<br>👍🏻</span></a>
+    <a><span class="current">나의 위치로<br>🚀</span></a>
+    <div id="indicator"></div>
+  </nav>
   <script>
     // var urlAdd = "http://localhost:3000/"  
     var urlAdd = "https://itjusttravel.herokuapp.com/"
@@ -259,7 +265,7 @@
 
   let currentUse = true;
 
-  $('#current').click(() => {
+  $('.current').click(() => {
     if("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position){
         const lat = position.coords.latitude;
