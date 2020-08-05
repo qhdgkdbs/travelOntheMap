@@ -127,3 +127,13 @@ nav a:nth-child(3):hover ~ #indicator
     background: linear-gradient(130deg, purple, palevioletred);
 } */
 
+.recomandedSpotBox{
+    position: relative;
+    top : -10px;
+    background-color: cadetblue;
+    color: beige; 
+    font-size:18px; 
+    padding : 3px; 
+    border-radius:5px; 
+    width:100%;
+}
