@@ -22,6 +22,15 @@ const spotSchema = mongoose.Schema({
     lng : {
         type : Number,
     },
+    tag1: {
+        type : String,
+    },
+    tag2 : {
+        type : String,
+    },
+    tag3 : {
+        type : String,
+    },
     createdAt: {
         type: Date, 
         default: Date.now

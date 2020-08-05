@@ -5,7 +5,7 @@ nav
     /* bottom : 20%; */
     right: 0;
     left: 0;
-    width: 319px;
+    width: 360px;
     display: table;
     margin: 0 auto;
     transform: translateY(-50%);
@@ -17,7 +17,7 @@ nav
 nav a
 {
     position: relative;
-    width: 50%;
+    width: 33.3%;
     display: table-cell;
     text-align: center;
     color: cadetblue;
@@ -111,18 +111,31 @@ nav a:hover:before, nav a:hover:after
 
 nav a:nth-child(1):hover ~ #indicator
 {
-    left: 10%;
+    left: 5%;
     background: linear-gradient(130deg, purple, palevioletred);
 }
 
 nav a:nth-child(2):hover ~ #indicator
 {
-    left: 60%;
+    left: 34%;
     background: linear-gradient(130deg, #00e2ff, #89ff00);
 }
-/* 
+
 nav a:nth-child(3):hover ~ #indicator
 {
-    left: 80%;
+    left: 67%;
     background: linear-gradient(130deg, purple, palevioletred);
-} */
+}
+
+.recomandedSpotBox{
+    position: relative;
+    top : -10px;
+    background-color: cadetblue;
+    color: beige; 
+    font-size:18px; 
+    padding : 3px; 
+    border-radius:5px; 
+    width:100%;
+}
+
+

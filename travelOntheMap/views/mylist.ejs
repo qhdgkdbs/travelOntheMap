@@ -50,8 +50,9 @@
           </section>
      </div>
           <nav>
-               <a href="https://itjusttravel.herokuapp.com/columbus">여행지 추가🚀</a>
-               <a href="https://itjusttravel.herokuapp.com/mylist">여행지 홈으로🙈</a>
+               <a href="https://itjusttravel.herokuapp.com/columbus">여행지 탐색🚀</a>
+               <a href="https://itjusttravel.herokuapp.com/">여행지 홈으로🙈</a>
+               <a href="https://forms.gle/2poSfTFw2fu5du6x8">여행지 제보👍🏻</a>
                <div id="indicator"></div>
           </nav>
 </div>
@@ -170,18 +171,17 @@
 
                          content = content +      
                               `
-                              <div class="wow fadeInUp col-md-3 col-sm-6" data-wow-delay="0.1s">               
-                                   <div class="work-thumb" style = "margin-bottom:0px;">
-                                        <a href="${target.moreLink}" class="image-popup">
-                                             <img src="${target.picLink}" class="img-responsive" alt="Fine Arts">
-                                        </a>
-                                   </div>
-                                   <div onclick='saveOrDeleteRedirect("${target._id}")' style = "margin-bottom:5px;text-align:right;"><img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="20" height="20" ></div>
+                              <div class="wow fadeInUp col-md-3 col-sm-6 " data-wow-delay="0.1s">               
+                                   <div class="work-thumb" style="border-bottom: 1px solid cadetblue; text-align: center; ">
+                                        <div>
+                                             <a href="${target.moreLink}" class="image-popup">
+                                                  <img src="${target.picLink}" class="img-responsive" alt="Fine Arts" style = "margin: 0 auto;">
+                                             </a>
+                                        <span onclick='saveOrDeleteRedirect("${target._id}")' style = "margin-bottom:5px;text-align:right;position:relative; top:-25px;"><img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="20" height="20" ></span>
 
-                                   <div>
-                                        <a href="${target.moreLink}" style="background-color: cadetblue; color: beige; font-size:18px; padding : 3px; border-radius:5px; width:100%">
-                                             지금, <span style="color:white;">${target.spot}</span>로 떠나기 🚀🚀
-                                        </a>
+                                        </div>
+                                        <a href="${target.moreLink}" class = "recomandedSpotBox"><span style="color:white;">${target.spot}</span>🚀</a>
+                                        <div style="margin: 10px;">${target.des}</div>
                                    </div>
                               </div>
                               ` 
