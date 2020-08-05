@@ -27,7 +27,7 @@ router.get('/appmylist', function(req, res, next) {
 });
 
 router.get('/apprecomanded', function(req, res, next) {  
-  res.render('app_recomanded', { title: 'Express' })
+  res.render('app_recomandedList', { title: 'Express' })
 });
 
 module.exports = router;
