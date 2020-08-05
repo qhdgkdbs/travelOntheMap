@@ -18,13 +18,13 @@
 <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 <link rel="stylesheet" href="stylesheets/animate.css">
 <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/indexStyle.css">
+<link rel="stylesheet" href="stylesheets/app_mylist_indexStyle.css">
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
 
 <!-- Main css -->
-<link rel="stylesheet" href="stylesheets/tooplate-style.css">
+<link rel="stylesheet" href="stylesheets/mylist_tooplate-style.css">
 
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -36,6 +36,17 @@
      </div>
 </div>
 
+
+<!-- HOME SECTION -->
+
+     <nav>
+          <a href="https://itjusttravel.herokuapp.com/columbus">콜럼버스 맵🚀</a>
+          <a href="https://forms.gle/2poSfTFw2fu5du6x8">여행지 제보👍🏻</a>
+          <div id="indicator"></div>
+     </nav>
+
+
+
 <!-- WORK SECTION -->
 <section id="work" class="parallax-section">
      <div class="container">
@@ -44,8 +55,8 @@
                <div class="col-md-12 col-sm-12">
                     <!-- SECTION TITLE -->
                     <div class="wow fadeInUp section-title" data-wow-delay="0.1s">
-                         <h2>이시국 추천 여행지</h2>
-                         <p>우리는 가끔 쉬어야해요, 다른 사람들은 어떤 여행을 떠나고 있는지 알아봐요.</p>
+                         <h2>나의, 여행지들</h2>
+                         <p>로그인 기능을 이용하지 않아, 같은 브라우져로 접속시에만 확인 할 수 있습니다!<br>언젠가 떠날 그 곳을 저장해둬요,<br>최대 20곳만 저장할 수 있으니 신중히 저장해요🙈</p>
                     </div>
                </div>
                <!-- WORK THUMB -->
@@ -62,11 +73,15 @@
      var urlAdd = "https://itjusttravel.herokuapp.com/"
 
 
+     var output = localStorage.getItem("key");		
+     var myListArr = []
+     myListArr=JSON.parse(output);
+
      var dataList;
      var htmlData = "";
 
      $.ajax({
-          url :  urlAdd + 'file/recomanded',
+          url :  urlAdd + 'file/',
           dataType :"json", // 데이터타입을 json 으로 받아옴
           success : function(data) {
                // alert("data로딩이 완료되었습니다.")
@@ -80,35 +95,79 @@
           }
      })
 
+
      var setContent = function() {
           // console.log(dataList)
           // if(!myListArr)myListArr=[0]
 
-          var content = ``
+          var content = `<div class="card">`
 
           for(var target of dataList){
-  
-               console.log(target._id)
-               
+               if(myListArr){
+                    //나의 여행지가 있을경우
+                    if(myListArr.includes(target._id)){
+
+                         isitSavedImg = "https://i.postimg.cc/sgQGXBGD/icon-18.png";
+
+                         content = content +      
+                              `
+                              <div class="wow fadeInUp col-md-3 col-sm-6 " data-wow-delay="0.1s">               
+                                   <div class="work-thumb" style="border-bottom: 1px solid cadetblue; text-align: center; ">
+                                        <div>
+                                             <a href="${target.moreLink}" class="image-popup">
+                                                  <img src="${target.picLink}" class="img-responsive" alt="Fine Arts" style = "margin: 0 auto;">
+                                             </a>
+                                        <span onclick='saveOrDeleteRedirect("${target._id}")' style = "margin-bottom:5px;text-align:right;position:relative; top:-25px;"><img class= "isItSavedImg" src="${isitSavedImg}" alt="heelo" width="20" height="20" ></span>
+
+                                        </div>
+                                        <a href="${target.moreLink}" class = "recomandedSpotBox"><span style="color:white;">${target.spot}</span>🚀</a>
+                                        <div style="margin: 10px;">${target.des}</div>
+                                   </div>
+                              </div>
+                              ` 
+                    }  
+               }else{
+                    // 나의 여행지가 한 곳도 없을 경우.
+                    break;
+               }
+          }
+     
+          if(myListArr.length === 0){
                content = content +      
                     `
                     <div class="wow fadeInUp col-md-3 col-sm-6" data-wow-delay="0.1s">               
-                         <div class="work-thumb">
-                              <a href="${target.moreLink}" class="image-popup">
-                                   <img src="${target.picLink}" class="img-responsive" alt="Fine Arts">
-                              </a>
+                         <div class="work-thumb" style = "margin-bottom:0px;">
+                              <div>저장된 나의 여행지가 없습니다..</div>
                          </div>
-                         
-                         <a href="${target.moreLink}" style="background-color: cadetblue; color: beige; font-size:18px; padding : 3px; border-radius:5px; width:100%">지금, <span style="color:white;">${target.spot}</span>로 떠나기 🚀🚀</a>
                     </div>
-                    `       
+                    ` 
           }
-     htmlData = htmlData + content                 
 
+          htmlData = htmlData + content +`</div>`        
 
-     $("#recomandedSpot").html(htmlData)
+          $("#recomandedSpot").html(htmlData)
      } 
 
+     function saveOrDeleteRedirect(id){
+          var output = localStorage.getItem("key");		
+          var myListArr = [0];
+          if(output){
+               myListArr = JSON.parse(output);
+          }
+          
+          //팝업으로 다시한번 물어보기
+          var r = confirm("나의 여행지에서 삭제 하시겠어요?");
+          if (r == true) {
+               //삭제 + 저장
+               myListArr.splice(myListArr.indexOf(id),1)
+               localStorage.setItem("key", JSON.stringify(myListArr));
+               location.reload()
+          } else {
+          
+          }
+          
+          // window.location.href =urlAdd;
+     }
 
 
 </script>
