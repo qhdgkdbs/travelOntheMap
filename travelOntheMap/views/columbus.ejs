@@ -27,6 +27,7 @@
 
       gtag('config', 'UA-173208515-1');
     </script>
+    <script type = "text/javascript" src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=74ba81719552d40e3257183d9278679b&libraries=services'></script>
 </head>
 <body>
   <!-- <div id="navbar">랜섬<br>여행</div>
@@ -42,15 +43,22 @@
   </div>
   <div id="map" style="width:100%;height:100vh;"></div>
   <!-- <script type="text/javascript" src="/data/data.js"></script> -->
+
+  <div id="search">
+    <input id="search_input" placeholder="목적지를 입력해주세요" />
+    <button id = "search_button">검색</button>
+  </div>
+  
   <nav>
     <a href="https://itjusttravel.herokuapp.com/mylist"><span>나의, 여행지<br>🙈</span></a>
     <a href="https://itjusttravel.herokuapp.com/"><span>홈화면으로<br>👍🏻</span></a>
     <a><span class="current">나의 위치로<br>🚀</span></a>
     <div id="indicator"></div>
   </nav>
+
   <script>
     // var urlAdd = "http://localhost:3000/"  
-    var urlAdd = "https://itjusttravel.herokuapp.com/"
+    var urlAdd = "https://itjusttravel.herokuapp.com/" 
 
 
   var mapOptions = {
@@ -291,6 +299,50 @@
     }
   })
 
+  let ps = new kakao.maps.services.Places();
+  let search_arr = []
+
+  $("#search_input").on("keydown", function(e){
+    if(e.keyCode === 13){
+      let content = $(this).val();
+      ps.keywordSearch(content,placeSearchCB)
+    }
+  })
+
+  $("#search_button").on("click", function(e){
+    let content = $("#search_input").val()
+    ps.keywordSearch(content, placeSearchCB)
+  })
+
+  function placeSearchCB(data,status,pagination){
+    if(status === kakao.maps.services.Status.OK){
+      let target = data[0]
+      const lat = target.y;
+      const lng = target.x;
+      const latlng = new naver.maps.LatLng(lat,lng);
+
+      marker = new naver.maps.Marker({
+        position : latlng,
+        map : map
+      })
+
+      // 이전에 검색한 기록에 대한 마커를 지워주는 역할
+      if(search_arr.length == 0){
+        search_arr.push(marker)
+      }else{
+        search_arr.push(marker)
+        let pre_marker = search_arr.splice(0,1);
+        pre_marker[0].setMap(null)
+      }
+
+      map.setZoom(14,false)
+      map.panTo(latlng)
+
+      // console.log(target)
+    }else{
+      alret("검색결과가 없습니다.")
+    }
+  }
 
 
   </script>

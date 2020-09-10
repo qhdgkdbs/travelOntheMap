@@ -298,39 +298,6 @@ a:hover, a:active, a:focus {
   Contact section              
 -----------------------------------------*/
 
-#contact .form-control {
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-  border-radius: 5px;
-  box-shadow: none;
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  -webkit-transition: all ease-in-out 0.4s;
-  transition: all ease-in-out 0.4s;
-}
-
-#contact input {
-  height: 55px;
-}
-
-#contact button#submit {
-  background: #d7b065;
-  border: none;
-  border-radius: 40px;
-  color: #ffffff;
-  font-weight: bold;
-  height: 55px;
-  padding-bottom: 10px;
-  margin-top: 24px;
-}
-
-#contact button#submit:hover {
-  background: #3d3d3f;
-  color: #ffffff;
-}
-
-
 /*---------------------------------------
   Footer section              
 -----------------------------------------*/
@@ -397,45 +364,6 @@ footer .dash-line {
   position: relative;
 }
 
-
-/*---------------------------------------
-  Social icon             
------------------------------------------*/
-
-.social-icon {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.social-icon li {
-  display: inline-block;
-  list-style: none;
-}
-
-.social-icon li a {
-  background: #f9f9f9;
-  border-radius: 100%;
-  color: #3d3d3f;
-  cursor: pointer;
-  font-size: 16px;
-  text-decoration: none;
-  transition: all 0.4s ease-in-out;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  vertical-align: middle;
-  position: relative;
-  margin: 0px 6px 10px 6px;
-}
-
-.social-icon li a:hover {
-  background: #d7b065;
-  color: #ffffff;
-  transform: scale(1.1);
-}
 
 /*---------------------------------------
   Mobile Responsive styles              
