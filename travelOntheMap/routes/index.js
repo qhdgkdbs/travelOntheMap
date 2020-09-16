@@ -18,16 +18,5 @@ router.get('/updateinfo', function(req, res, next) {
   res.render('updateinfo', { title: 'Express' })
 });
 
-router.get('/appcolumbus', function(req, res, next) {  
-  res.render('app_columbus', { title: 'Express' })
-});
-
-router.get('/appmylist', function(req, res, next) {  
-  res.render('app_mylist', { title: 'Express' })
-});
-
-router.get('/apprecomanded', function(req, res, next) {  
-  res.render('app_recomandedList', { title: 'Express' })
-});
 
 module.exports = router;

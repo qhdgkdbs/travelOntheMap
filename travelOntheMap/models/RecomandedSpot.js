@@ -9,10 +9,6 @@ const recomandedSpotSchema = mongoose.Schema({
     des : {
         type : String,
     },
-    moreLink : {
-        type : String,
-        minlength : 1,
-    },
     picLink : {
         type : String,
     },
@@ -21,15 +17,6 @@ const recomandedSpotSchema = mongoose.Schema({
     },
     lng : {
         type : Number,
-    },
-    tag1: {
-        type : String,
-    },
-    tag2 : {
-        type : String,
-    },
-    tag3 : {
-        type : String,
     },
     createdAt: {
         type: Date, 
